@@ -2,38 +2,149 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinguaTranslate</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinguaTranslate</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 25px 16px;
+      font-family: Arial, sans-serif;
+      background: #f0f5ff;
+      color: #172554;
+    }
+
+    .app {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 25px 20px;
+      background: white;
+      border-radius: 22px;
+      box-shadow: 0 8px 25px #cbd5e1;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2563eb;
+      font-size: 30px;
+    }
+
+    .intro {
+      text-align: center;
+      line-height: 1.6;
+      color: #64748b;
+    }
+
+    label {
+      display: block;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    select, textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 16px;
+      background: white;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    button:active {
+      background: #1d4ed8;
+    }
+
+    .note {
+      text-align: center;
+      margin-top: 18px;
+      color: #64748b;
+      font-size: 13px;
+    }
+  </style>
 </head>
 
 <body>
+  <main class="app">
+    <h1>🌍 LinguaTranslate</h1>
 
-    <h1>LinguaTranslate</h1>
+    <p class="intro">
+      Traduisez facilement entre le français,
+      l'anglais et le mandarin.
+    </p>
 
-    <p>Traduisez facilement entre le français, l'anglais et le mandarin.</p>
-
-    <select>
-        <option>Français</option>
-        <option>Anglais</option>
-        <option>Mandarin</option>
+    <label for="source">Langue du texte</label>
+    <select id="source">
+      <option value="fr">Français</option>
+      <option value="en">Anglais</option>
+      <option value="zh">Mandarin</option>
     </select>
 
-    <br><br>
+    <label for="texte">Votre texte</label>
+    <textarea id="texte" placeholder="Écrivez votre texte ici..."></textarea>
 
-    <textarea placeholder="Écrivez votre texte ici..."></textarea>
-
-    <br><br>
-
-    <select>
-        <option>Anglais</option>
-        <option>Français</option>
-        <option>Mandarin</option>
+    <label for="cible">Traduire vers</label>
+    <select id="cible">
+      <option value="en">Anglais</option>
+      <option value="fr">Français</option>
+      <option value="zh">Mandarin</option>
     </select>
 
-    <br><br>
+    <button type="button" onclick="traduire()">
+      TRADUIRE
+    </button>
 
-    <button>TRADUIRE</button>
+    <label for="resultat">Résultat</label>
+    <textarea id="resultat" placeholder="La traduction apparaîtra ici..." readonly></textarea>
 
+    <p class="note">
+      Première version de votre application
+    </p>
+  </main>
+
+  <script>
+    function traduire() {
+      const texte = document.getElementById("texte").value.trim();
+      const source = document.getElementById("source").value;
+      const cible = document.getElementById("cible").value;
+      const resultat = document.getElementById("resultat");
+
+      if (texte === "") {
+        resultat.value = "Écrivez d'abord un texte à traduire.";
+        return;
+      }
+
+      if (source === cible) {
+        resultat.value = texte;
+        return;
+      }
+
+      resultat.value =
+        "La fonction de traduction sera ajoutée à l'étape suivante.";
+    }
+  </script>
 </body>
 </html>
